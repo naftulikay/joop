@@ -1,0 +1,16 @@
+---
+dist: xenial
+sudo: required
+
+language: generic
+
+services:
+  - docker
+
+script: docker build -t naftulikay/joop .
+
+notifications:
+  email:
+    on_success: never
+    on_failure: never
+
