@@ -1,2 +1,4 @@
 /.ansible/galaxy-roles
 /.vagrant
+
+.ipynb_checkpoints
