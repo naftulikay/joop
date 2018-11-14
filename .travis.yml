@@ -9,8 +9,11 @@ services:
 
 script: docker build -t naftulikay/joop .
 
+after_success: |-
+  curl -H "Content-Type: application/json" --data '{"build": true}' -X POST \
+    https://registry.hub.docker.com/u/naftulikay/joop/trigger/$DOCKERHUB_TOKEN/
+
 notifications:
   email:
     on_success: never
     on_failure: never
-
