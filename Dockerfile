@@ -45,8 +45,12 @@ WORKDIR ${HOME}
 EXPOSE 8888
 
 # install python packages
-ADD requirements.txt $HOME/requirements.txt
-RUN pip install --user -r $HOME/requirements.txt
+ADD --chown=jupyter:jupyter requirements.txt $HOME/requirements.txt
+RUN pip install --user -r $HOME/requirements.txt && rm $HOME/requirements.txt
 
 # install rust evaluation context for jupyter
 RUN cargo install evcxr_jupyter && evcxr_jupyter --install
+
+# add files
+ADD --chown=jupyter:jupyter index.ipynb $HOME/
+ADD --chown=jupyter:jupyter notebooks/ $HOME/notebooks/
